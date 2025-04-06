@@ -1,0 +1,37 @@
+@baseUrl = http://localhost:3000
+
+
+###
+
+GET {{baseUrl}} HTTP/1.1
+
+###
+
+GET {{baseUrl}}/contatos HTTP/1.1
+
+###
+
+# @name createdContact
+POST {{baseUrl}}/contatos HTTP/1.1
+Content-Type: application/json
+
+{
+  "nome": "Darlley Brasil",
+  "telefone": "5567999999999"
+}
+
+###
+@contactId = {{ createdContact.response.body.id }}
+###
+
+PATCH {{baseUrl}}/contatos/{{contactId}} HTTP/1.1
+Content-Type: application/json
+
+{
+  "nome": "Darlley brito",
+  "telefone": "5567999999998"
+}
+
+###
+
+DELETE {{baseUrl}}/contatos/{{contactId}} HTTP/1.1
